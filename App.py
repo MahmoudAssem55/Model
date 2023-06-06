@@ -31,10 +31,9 @@ async def detect_food_return_json_result(file: bytes = File(...)):
     input_image = get_image_from_bytes(file)
     print(input_image)
     results = model(input_image)
-    print(results)
-    #detect_res = results.pandas().xyxy[0].to_json(orient="records")
-    #detect_res = json.loads(detect_res)
-    return {"result": 55454545}#detect_res}
+    detect_res = results.pandas().xyxy[0].to_json(orient="records")
+    detect_res = json.loads(detect_res)
+    return {"result": detect_res}
 
 @app.post("/object-to-img")
 async def detect_food_return_base64_img(file: bytes = File(...)):

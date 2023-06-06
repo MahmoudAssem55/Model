@@ -2,9 +2,10 @@ import torch
 from PIL import Image
 import io
 def get_yolov5():
-    model = torch.hub.load('yolov5', 'custom', path='./best.pt', source='local')
+    model = torch.hub.load('yolov5', 'custom', path='../best.pt', source='local')
     model.conf = 0.3
     return model
+
 def get_image_from_bytes(binary_image, max_size=1024):
     input_image =Image.open(io.BytesIO(binary_image)).convert("RGB")
     width, height = input_image.size
