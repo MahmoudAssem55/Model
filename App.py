@@ -26,6 +26,7 @@ def get_health():
 
 @app.post("/object-to-json")
 async def detect_food_return_json_result(file: bytes = File(...)):
+    print("111111111111111111111111111111111111111111111111")
     input_image = get_image_from_bytes(file)
     print(input_image)
     results = model(input_image)
