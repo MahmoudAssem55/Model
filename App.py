@@ -5,7 +5,7 @@ import io
 from PIL import Image
 import json
 from fastapi.middleware.cors import CORSMiddleware
-model = get_yolov5()
+
 app = FastAPI()
 origins = [
     "http://localhost",
@@ -27,9 +27,8 @@ async def get_health(file: bytes = File(...)):
 
 @app.post("/object-to-json")
 async def detect_food_return_json_result(file: bytes = File(...)):
-    print("111111111111111111111111111111111111111111111111")
+    model = get_yolov5()
     input_image = get_image_from_bytes(file)
-    print(input_image)
     results = model(input_image)
     detect_res = results.pandas().xyxy[0].to_json(orient="records")
     detect_res = json.loads(detect_res)
