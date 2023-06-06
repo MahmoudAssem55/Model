@@ -21,7 +21,7 @@ app.add_middleware(
 )
 
 @app.get('/notify/v1/health')
-def get_health():
+def get_health(file: bytes = File(...)):
     return dict(msg='OK')
 
 @app.post("/object-to-json")
